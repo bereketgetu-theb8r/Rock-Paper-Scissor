@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+
+    <script>
+        let humanScore = 0;
+        let computerScore = 0
+        function getComputerChoice(){
+            const computerChoices = ["Rock" , "Paper" , "Scissor"]
+            let randomIndex = Math.floor(Math.random() * 3)
+            let finallChoice = computerChoices[randomIndex].toLowerCase()
+            
+            console.log(`computer choose : ${finallChoice}`);
+            return finallChoice;
+        }
+        function getHumanChoice(){
+            const humanInput = window.prompt("Enter rock or paper or scissor")
+            let humanInputActual = humanInput.toLowerCase()
+            console.log(`Human choose : ${humanInput}`)
+            return humanInputActual ? humanInputActual : "";
+        }
+        function playRound(humanChoice , computerChoice){
+            if(humanChoice === computerChoice){
+               console.log(`Tie : ${humanChoice} === ${computerChoice}`)
+            }
+            if(humanChoice === "rock" && computerChoice ==="paper" || humanChoice === "paper" && computerChoice ==="scissor" || humanChoice === "scissor" && computerChoice ==="rock"){
+                console.log(`computer wins `);
+                computerScore++
+            }
+            if(humanChoice === "paper" && computerChoice ==="rock" || humanChoice === "scissor" && computerChoice ==="paper" || humanChoice === "rock" && computerChoice ==="scissor"){
+                console.log(`human wins `);
+                humanScore++
+            }
+            console.log(humanScore , computerScore)
+        }
+        function playGame(){
+            for(let i = 0 ; i < 5 ; i++){
+                console.log(`---Round ${i + 1}`)
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+                playRound(humanSelection , computerSelection)
+            }
+            if(humanScore > computerScore){
+                console.log("Finally,Humans wins");
+            }else if(computerScore > humanScore){
+                console.log("Finally,computer wins");
+            }else{
+                console.log("Finally , Both are tie");
+                
+            }
+        }
+        playGame()
+    </script>
+    
+</body>
+</html>
